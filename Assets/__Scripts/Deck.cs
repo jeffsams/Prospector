@@ -176,6 +176,7 @@ public class Deck : MonoBehaviour {
 			foreach (Decorator deco in decorators) {
 				tGO = Instantiate(prefabSprite) as GameObject;
 				tSR = tGO.GetComponent<SpriteRenderer>();
+
 				if (deco.type == "suit") {
 					tSR.sprite = dictSuits[card.suit];
 				} else { // it is a rank
@@ -271,7 +272,7 @@ public class Deck : MonoBehaviour {
 	 static public void Shuffle(ref List<Card> oCards){
 	 	List<Card> tCards = new List<Card>();
 	 	int ndx;
-	 	
+        tCards = new List<Card>();
 	 	// while there are still cards in the original list
 	 	// draw a card at random from the list of cards
 	 	// put it in temporary list
