@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4224305015154128}
   - component: {fileID: 114017444921071608}
   - component: {fileID: 132140864637097596}
+  - component: {fileID: 114911606220445442}
   m_Layer: 0
   m_Name: _Scoreboard
   m_TagString: Untagged
@@ -54,6 +55,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabFloatingScore: {fileID: 1166591662932512, guid: 5e44e3b8899294142a0ce7bc72b7a0d0,
     type: 2}
+  ________________: 0
+  _score: 0
+  _scoreString: 
+--- !u!114 &114911606220445442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150562485256840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914c985c8903ed34aa66ca3480380520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabFloatingScore: {fileID: 0}
   ________________: 0
   _score: 0
   _scoreString: 
