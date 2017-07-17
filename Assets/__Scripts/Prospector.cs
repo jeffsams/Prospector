@@ -2,11 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum ScoreEvent
+{
+    draw,
+    mine,
+    mineGold,
+    gameWin,
+    gameLoss
+}
 
 public class Prospector : MonoBehaviour
 {
 
     static public Prospector S;
+    static public int SCORE_FROM_PREV_ROUND = 0;
+    static public int HIGH_SCORE = 0;
     public Deck deck;
     public Layout layout;
     public TextAsset deckXML;
@@ -21,9 +31,19 @@ public class Prospector : MonoBehaviour
     public List<CardProspector> tableau;
     public List<CardProspector> discardPile;
 
+    public int chain = 0;
+    public int scoreRun = 0;
+    public int score = 0;
+
     void Awake()
     {
         S = this;
+        if (PlayerPrefs.HasKey("prospectorHighScore"))
+        {
+            HIGH_SCORE = PlayerPrefs.GetInt("ProspectorHighScore");
+        }
+        score += SCORE_FROM_PREV_ROUND;
+        SCORE_FROM_PREV_ROUND = 0;
     }
 
     void Start()
@@ -100,9 +120,9 @@ public class Prospector : MonoBehaviour
         MoveToTarget(Draw());
         UpdateDrawPile();
 
-        foreach(CardProspector tCP in tableau)
+        foreach (CardProspector tCP in tableau)
         {
-            foreach(int hid in tCP.slotDef.hiddenBy)
+            foreach (int hid in tCP.slotDef.hiddenBy)
             {
                 cp = FindCardByLayoutID(hid);
                 tCP.hiddenBy.Add(cp);
@@ -166,6 +186,7 @@ public class Prospector : MonoBehaviour
                 MoveToDiscard(target);
                 MoveToTarget(Draw());
                 UpdateDrawPile();
+                ScoreManager(ScoreEvent.draw);
                 break;
             case CardState.tableau:
                 bool validMatch = true;
@@ -181,6 +202,7 @@ public class Prospector : MonoBehaviour
                 tableau.Remove(cd);
                 MoveToTarget(cd);
                 SetTableauFaces();
+                ScoreManager(ScoreEvent.mine);
                 break;
 
         }
@@ -189,12 +211,12 @@ public class Prospector : MonoBehaviour
 
     void CheckForGameOver()
     {
-        if (tableau.Count ==0)
+        if (tableau.Count == 0)
         {
             GameOver(true);
             return;
         }
-        if (drawPile.Count >0)
+        if (drawPile.Count > 0)
         {
             return;
         }
@@ -212,20 +234,67 @@ public class Prospector : MonoBehaviour
     {
         if (won)
         {
+            ScoreManager(ScoreEvent.gameWin);
             print("Game Over. You Won! :)");
-        } else
+        }
+        else
         {
+            ScoreManager(ScoreEvent.gameLoss);
             print("Game Over. You Lost. :(");
         }
         Application.LoadLevel("_Prospector_Scene_0");
     }
+
+    void ScoreManager(ScoreEvent sEvt)
+    {
+        switch (sEvt)
+        {
+            case ScoreEvent.draw:
+            case ScoreEvent.gameWin:
+            case ScoreEvent.gameLoss:
+                chain = 0;
+                score += scoreRun;
+                scoreRun = 0;
+                break;
+            case ScoreEvent.mine:
+                chain++;
+                scoreRun += chain;
+                break;
+        }
+
+        switch (sEvt)
+        {
+            case ScoreEvent.gameWin:
+
+                Prospector.SCORE_FROM_PREV_ROUND = score;
+                print("You won this round! Round score: " + score);
+                break;
+            case ScoreEvent.gameLoss:
+
+                if (Prospector.HIGH_SCORE <= score)
+                {
+                    print("You got the high score! High score: " + score);
+                    Prospector.HIGH_SCORE = score;
+                    PlayerPrefs.SetInt("ProspectorHighScore", score);
+                }
+                else
+                {
+                    print("Your final score for the game was: " + score);
+                }
+                break;
+            default:
+                print("score: " + score + "  scoreRun:" + scoreRun + "  chain:" + chain);
+                break;
+        }
+    }
+
 
     void SetTableauFaces()
     {
         foreach (CardProspector cd in tableau)
         {
             bool fup = true;
-            foreach(CardProspector cover in cd.hiddenBy)
+            foreach (CardProspector cover in cd.hiddenBy)
             {
                 if (cover.state == CardState.tableau)
                 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreEvent : MonoBehaviour {
+public class FloatingScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
