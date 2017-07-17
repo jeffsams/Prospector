@@ -171,7 +171,6 @@ public class Prospector : MonoBehaviour {
         if (c0.rank == 1 && c1.rank == 13) return (true);
         if (c0.rank == 13 && c1.rank == 1) return (true);
 
-    faqfwfda
         return (false);
     }
 
