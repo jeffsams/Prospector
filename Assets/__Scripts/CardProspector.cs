@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 public enum CardState
 {
     drawpile,
@@ -21,6 +22,10 @@ public class CardProspector : Card {
         Prospector.S.CardClicked(this);
         base.OnMouseUpAsButton();
     }
+=======
+public class CardProspector : MonoBehaviour {
+
+>>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
 	// Use this for initialization
 	void Start () {
 		

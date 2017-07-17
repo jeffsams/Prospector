@@ -10,6 +10,7 @@ public class Prospector : MonoBehaviour {
     public Layout               layout;
     public TextAsset            deckXML;
     public TextAsset			layoutXML;
+<<<<<<< HEAD
     public List<CardProspector> drawPile;
     public Vector3 layoutCenter;
     public float xOffset = 3;
@@ -19,6 +20,8 @@ public class Prospector : MonoBehaviour {
     public CardProspector target;
     public List<CardProspector> tableau;
     public List<CardProspector> discardPile;
+=======
+>>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
 
 	void Awake(){
 		S = this;
@@ -31,8 +34,11 @@ public class Prospector : MonoBehaviour {
 
         layout = GetComponent<Layout>();
         layout.ReadLayout(layoutXML.text);
+<<<<<<< HEAD
         drawPile = ConvertListCardsToListCardProspectors(deck.cards);
         LayoutGame();
+=======
+>>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
 	}
 
     CardProspector Draw()
