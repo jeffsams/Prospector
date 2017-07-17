@@ -45,6 +45,18 @@ public class Prospector : MonoBehaviour
         return (cd);
     }
 
+    CardProspector FindCardByLayoutID(int layoutID)
+    {
+        foreach (CardProspector tCP in tableau)
+        {
+            if (tCP.layoutID == layoutID)
+            {
+                return (tCP);
+            }
+        }
+        return (null);
+    }
+
     List<CardProspector> ConvertListCardsToListCardProspectors(List<Card> lCD)
     {
         List<CardProspector> lCP = new List<CardProspector>();
@@ -87,6 +99,15 @@ public class Prospector : MonoBehaviour
 
         MoveToTarget(Draw());
         UpdateDrawPile();
+
+        foreach(CardProspector tCP in tableau)
+        {
+            foreach(int hid in tCP.slotDef.hiddenBy)
+            {
+                cp = FindCardByLayoutID(hid);
+                tCP.hiddenBy.Add(cp);
+            }
+        }
     }
 
     void MoveToTarget(CardProspector cd)
@@ -159,8 +180,58 @@ public class Prospector : MonoBehaviour
                 if (!validMatch) return;
                 tableau.Remove(cd);
                 MoveToTarget(cd);
+                SetTableauFaces();
                 break;
 
+        }
+        CheckForGameOver();
+    }
+
+    void CheckForGameOver()
+    {
+        if (tableau.Count ==0)
+        {
+            GameOver(true);
+            return;
+        }
+        if (drawPile.Count >0)
+        {
+            return;
+        }
+        foreach (CardProspector cd in tableau)
+        {
+            if (AdjacentRank(cd, target))
+            {
+                return;
+            }
+        }
+        GameOver(false);
+    }
+
+    void GameOver(bool won)
+    {
+        if (won)
+        {
+            print("Game Over. You Won! :)");
+        } else
+        {
+            print("Game Over. You Lost. :(");
+        }
+        Application.LoadLevel("_Prospector_Scene_0");
+    }
+
+    void SetTableauFaces()
+    {
+        foreach (CardProspector cd in tableau)
+        {
+            bool fup = true;
+            foreach(CardProspector cover in cd.hiddenBy)
+            {
+                if (cover.state == CardState.tableau)
+                {
+                    fup = false;
+                }
+            }
         }
     }
     public bool AdjacentRank(CardProspector c0, CardProspector c1)
