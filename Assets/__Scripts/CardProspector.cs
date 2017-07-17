@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 public enum CardState
 {
     drawpile,
@@ -11,7 +10,8 @@ public enum CardState
     discard
 }
 
-public class CardProspector : Card {
+public class CardProspector : Card
+{
     public CardState state = CardState.drawpile;
     public List<CardProspector> hiddenBy = new List<CardProspector>();
     public int layoutID;
@@ -22,17 +22,15 @@ public class CardProspector : Card {
         Prospector.S.CardClicked(this);
         base.OnMouseUpAsButton();
     }
-=======
-public class CardProspector : MonoBehaviour {
+    // Use this for initialization
+    void Start()
+    {
 
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

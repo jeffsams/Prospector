@@ -70,11 +70,11 @@ public class Deck : MonoBehaviour {
 		s += " x=" + xmlr.xml ["xml"] [0] ["decorator"] [0].att ("x");
 		s += " y=" + xmlr.xml ["xml"] [0] ["decorator"] [0].att ("y");
 		s += " scale=" + xmlr.xml ["xml"] [0] ["decorator"] [0].att ("scale");
-<<<<<<< HEAD
-		 print (s);
-=======
+
 		// print (s);
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
+
+		// print (s);
+
 		
 		//Read decorators for all cards
 		// these are the small numbers/suits in the corners

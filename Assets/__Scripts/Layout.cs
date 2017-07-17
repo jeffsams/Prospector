@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 // The SlotDef class is not a subclass of MonoBehaviour, so it doesn't need a
 //  separate C# file.
 [System.Serializable] // This makes SlotDefs visible in the Unity Inspector pane
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[System.Serializable] 
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
 public class SlotDef
 {
     public float x;
@@ -25,7 +17,6 @@ public class SlotDef
     public string type = "slot";
     public Vector2 stagger;
 }
-<<<<<<< HEAD
 
 public class Layout : MonoBehaviour
 {
@@ -61,42 +52,10 @@ public class Layout : MonoBehaviour
             if (slotsX[i].HasAtt("type"))
             {
                 // If this <slot> has a type attribute parse it
-=======
-public class Layout : MonoBehaviour
-{
-    public PT_XMLReader xmlr;
-    public PT_XMLHashtable xml;
-    public Vector2 multiplier;
-
-    public List<SlotDef> slotDefs;
-    public SlotDef drawPile;
-    public SlotDef discardPile;
-
-    public string[] sortingLayerNames = new string[] { "Row0", "Row1", "Row2", "Row3", "Discard", "Draw" };
-
-    public void ReadLayout(string xmlText)
-    {
-        xmlr = new PT_XMLReader();
-        xmlr.Parse(xmlText);
-        xml = xmlr.xml["xml"][0];
-        multiplier.x = float.Parse(xml["multiplier"][0].att("x"));
-        multiplier.y = float.Parse(xml["multiplier"][0].att("y"));
-
-        SlotDef tSD;
-
-        PT_XMLHashList slotsX = xml["slot"];
-        for (int i = 0; i < slotsX.Count; i++)
-        {
-            tSD = new SlotDef();
-            if (slotsX[i].HasAtt("type"))
-            {
-
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
                 tSD.type = slotsX[i].att("type");
             }
             else
             {
-<<<<<<< HEAD
                 // If not, set its type to "slot"; it's a tableau card 
                 tSD.type = "slot";
             }
@@ -114,21 +73,6 @@ public class Layout : MonoBehaviour
             switch (tSD.type)
             {
                 // pull additional attributes based on the type of this <slot>
-=======
-
-                tSD.type = "slot";
-            }
-
-            tSD.x = float.Parse(slotsX[i].att("x"));
-            tSD.y = float.Parse(slotsX[i].att("y"));
-            tSD.layerID = int.Parse(slotsX[i].att("layer"));
-
-            tSD.layerName = sortingLayerNames[tSD.layerID];
-
-            switch (tSD.type)
-            {
-
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
                 case "slot":
                     tSD.faceUp = (slotsX[i].att("faceup") == "1");
                     tSD.id = int.Parse(slotsX[i].att("id"));
@@ -142,10 +86,7 @@ public class Layout : MonoBehaviour
                     }
                     slotDefs.Add(tSD);
                     break;
-<<<<<<< HEAD
 
-=======
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
                 case "drawpile":
                     tSD.stagger.x = float.Parse(slotsX[i].att("xstagger"));
                     drawPile = tSD;
@@ -156,9 +97,4 @@ public class Layout : MonoBehaviour
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
-    
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24

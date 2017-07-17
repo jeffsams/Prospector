@@ -1,30 +1,25 @@
 fileFormatVersion: 2
 guid: a3dfadce2ec324208b9305ffd5119ba8
-<<<<<<< HEAD
-timeCreated: 1500250700
-=======
-timeCreated: 1500204773
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
+timeCreated: 1500251613
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Letters
-    21300002: Letters_0
-    21300004: Letters_1
-    21300006: Letters_2
-    21300008: Letters_3
-    21300010: Letters_4
-    21300012: Letters_5
-    21300014: Letters_6
-    21300016: Letters_7
-    21300018: Letters_8
-    21300020: Letters_9
-    21300022: Letters_10
-    21300024: Letters_11
-    21300026: Letters_12
-    21300028: Letters_13
-    21300030: Letters_14
-    21300032: Letters_15
+    21300000: Letters_0
+    21300002: Letters_1
+    21300004: Letters_2
+    21300006: Letters_3
+    21300008: Letters_4
+    21300010: Letters_5
+    21300012: Letters_6
+    21300014: Letters_7
+    21300016: Letters_8
+    21300018: Letters_9
+    21300020: Letters_10
+    21300022: Letters_11
+    21300024: Letters_12
+    21300026: Letters_13
+    21300028: Letters_14
+    21300030: Letters_15
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -45,17 +40,17 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 1024
+  textureFormat: 1
+  maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
-    aniso: 1
+    filterMode: -1
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -74,23 +69,15 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 1024
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 1
   - buildTarget: Standalone
     maxTextureSize: 1024
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

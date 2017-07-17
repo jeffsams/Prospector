@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Prospector : MonoBehaviour {
+public class Prospector : MonoBehaviour
+{
 
-	static public Prospector 	S;
-	public Deck					deck;
-    public Layout               layout;
-    public TextAsset            deckXML;
-    public TextAsset			layoutXML;
-<<<<<<< HEAD
+    static public Prospector S;
+    public Deck deck;
+    public Layout layout;
+    public TextAsset deckXML;
+    public TextAsset layoutXML;
     public List<CardProspector> drawPile;
     public Vector3 layoutCenter;
     public float xOffset = 3;
@@ -20,26 +20,23 @@ public class Prospector : MonoBehaviour {
     public CardProspector target;
     public List<CardProspector> tableau;
     public List<CardProspector> discardPile;
-=======
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
 
-	void Awake(){
-		S = this;
-	}
+    void Awake()
+    {
+        S = this;
+    }
 
-	void Start() {
-		deck = GetComponent<Deck> ();
-		deck.InitDeck (deckXML.text);
-		Deck.Shuffle (ref deck.cards);
+    void Start()
+    {
+        deck = GetComponent<Deck>();
+        deck.InitDeck(deckXML.text);
+        Deck.Shuffle(ref deck.cards);
 
         layout = GetComponent<Layout>();
         layout.ReadLayout(layoutXML.text);
-<<<<<<< HEAD
         drawPile = ConvertListCardsToListCardProspectors(deck.cards);
         LayoutGame();
-=======
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
-	}
+    }
 
     CardProspector Draw()
     {
@@ -118,7 +115,7 @@ public class Prospector : MonoBehaviour {
                 layout.multiplier.x * (layout.drawPile.x + i * dpStagger.x),
                 layout.multiplier.y * (layout.drawPile.y + i * dpStagger.y),
                 -layout.drawPile.layerID + 0.1f * i);
-            cd.faceUP = false; 
+            cd.faceUP = false;
             cd.state = CardState.drawpile;
             cd.SetSortingLayerName(layout.drawPile.layerName);
             cd.SetSortOrder(-10 * i);
@@ -126,9 +123,9 @@ public class Prospector : MonoBehaviour {
     }
     void MoveToDiscard(CardProspector cd)
     {
-      
+
         cd.state = CardState.discard;
-        discardPile.Add(cd);  
+        discardPile.Add(cd);
         cd.transform.parent = layoutAnchor;
         cd.transform.localPosition = new Vector3(
             layout.multiplier.x * layout.discardPile.x,
@@ -140,7 +137,7 @@ public class Prospector : MonoBehaviour {
     }
     public void CardClicked(CardProspector cd)
     {
-        switch(cd.state)
+        switch (cd.state)
         {
             case CardState.target:
                 break;

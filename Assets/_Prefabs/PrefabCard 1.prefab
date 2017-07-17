@@ -10,13 +10,9 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 21200000}
   - component: {fileID: 6500000}
-<<<<<<< HEAD
-  - component: {fileID: 114422121913626202}
-=======
-  - component: {fileID: 114364547852404066}
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
+  - component: {fileID: 114603282968135572}
   m_Layer: 0
-  m_Name: PrefabCard
+  m_Name: PrefabCard 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,11 +89,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
-<<<<<<< HEAD
---- !u!114 &114422121913626202
-=======
---- !u!114 &114364547852404066
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
+--- !u!114 &114603282968135572
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,11 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 7adab70a2c739a641a4028236ce77013, type: 3}
-=======
-  m_Script: {fileID: 11500000, guid: 100a12af089e19845beeba3dc7d93c78, type: 3}
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
   m_Name: 
   m_EditorClassIdentifier: 
   suit: 
@@ -123,7 +111,6 @@ MonoBehaviour:
     face: 
     rank: 0
     pips: []
-<<<<<<< HEAD
   spriteRenderers: []
   state: 0
   hiddenBy: []
@@ -138,5 +125,3 @@ MonoBehaviour:
     hiddenBy: 
     type: slot
     stagger: {x: 0, y: 0}
-=======
->>>>>>> 42a120ba49f020ef7c4e88d150510512532f3f24
