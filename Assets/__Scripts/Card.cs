@@ -14,6 +14,14 @@ public class Card : MonoBehaviour {
 	
 	public GameObject back;     // back of card;
 	public CardDefinition def;  // from DeckXML.xml		
+    public SpriteRenderer[] spriteRenderers;
+
+   
+
+    void Start()
+    {
+        SetSortOrder(0);
+    }
 
 	
 	// property
@@ -25,6 +33,53 @@ public class Card : MonoBehaviour {
 			back.SetActive(!value);
 		}
 	}	
+
+    public void PopulateSpriteRenderers()
+    {
+        if (spriteRenderers == null || spriteRenderers.Length == 0)
+        {
+            spriteRenderers = GetComponentsInChildren<SpriteRenderer>(); 
+        }
+    }
+
+    public void SetSortingLayerName(string tSLN)
+    {
+        PopulateSpriteRenderers();
+
+        foreach(SpriteRenderer tSR in spriteRenderers)
+        {
+            tSR.sortingLayerName = tSLN;
+        }
+    }
+
+    public void SetSortOrder(int s0rd)
+    {
+        PopulateSpriteRenderers();
+
+        foreach(SpriteRenderer tSR in spriteRenderers)
+        {
+            if (tSR.gameObject ==this.gameObject)
+            {
+                tSR.sortingOrder = s0rd;
+                continue;
+            }
+
+            switch (tSR.gameObject.name)
+            {
+                case "back":
+                    tSR.sortingOrder = s0rd + 2;
+                    break;
+                case "face":
+                default:
+                    tSR.sortingOrder = s0rd + 1;
+                    break;
+            }
+        }
+    }
+    virtual public void OnMouseUpAsButton()
+    {
+        print(name);
+    }
 } // class Card
 
 [System.Serializable]
@@ -39,6 +94,5 @@ public class Decorator{
 public class CardDefinition{
 	public string	face;	//sprite to use for face cart
 	public int		rank;	// value from 1-13 (Ace-King)
-	public List<Decorator>	
-					pips = new List<Decorator>();  // Pips Used					
+	public List<Decorator>		pips = new List<Decorator>();  // Pips Used					
 } // Class CardDefinition
