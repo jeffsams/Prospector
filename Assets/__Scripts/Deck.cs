@@ -74,7 +74,6 @@ public class Deck : MonoBehaviour {
 		// print (s);
 
 		// print (s);
-
 		
 		//Read decorators for all cards
 		// these are the small numbers/suits in the corners
