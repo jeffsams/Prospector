@@ -47,7 +47,8 @@ public class Player
             //  couple of milliseconds), but since we're only doing it once
             //  every turn, it isn't a problem.
         }
-
+        eCB.SetSortingLayerName("10"); // This sorts the moving card to the top
+        eCB.eventualSortLayer = handSlotDef.layerName;
         FanHand();
         return (eCB);
     }
@@ -110,7 +111,8 @@ public class Player
             hand[i].faceUP = (type == PlayerType.human);
 
             // Set the SortOrder of the cards so that they overlap properly
-            hand[i].SetSortOrder(i * 4);
+            hand[i].eventualSortOrder = i * 4;
+            //hand[i].SetSortOrder(i*4);
         }
 
     }
