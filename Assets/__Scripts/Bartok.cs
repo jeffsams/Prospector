@@ -41,6 +41,8 @@ public class Bartok : MonoBehaviour
     public TurnPhase phase = TurnPhase.idle;
     public GameObject turnLight;
 
+    public GameObject GTGameOver;
+    public GameObject GTRoundResult;
 
 
     void Awake()
@@ -48,6 +50,10 @@ public class Bartok : MonoBehaviour
         S = this;
         // Find the TurnLight by name
         turnLight = GameObject.Find("TurnLight");
+        GTGameOver = GameObject.Find("GTGameOver");
+        GTRoundResult = GameObject.Find("GTRoundResult");
+        GTGameOver.SetActive(false);
+        GTRoundResult.SetActive(false);
 
     }
 
@@ -182,6 +188,11 @@ public class Bartok : MonoBehaviour
         if (CURRENT_PLAYER != null)
         {
             lastPlayerNum = CURRENT_PLAYER.playerNum;
+            // Check for Game Over and need to reshuffle discards
+            if (CheckGameOver())
+            {
+                return;
+            }
         }
         CURRENT_PLAYER = players[num];
         phase = TurnPhase.pre;
@@ -308,5 +319,52 @@ public class Bartok : MonoBehaviour
 
         }
     }
+    public bool CheckGameOver()
+    {
+        // See if we need to reshuffle the discard pile into the draw pile
+        if (drawPile.Count == 0)
+        {
+            List<Card> cards = new List<Card>();
+            foreach (CardBartok cb in discardPile)
+            {
+                cards.Add(cb);
+            }
+            discardPile.Clear();
+            Deck.Shuffle(ref cards);
+            drawPile = UpgradeCardsList(cards);
+            ArrangeDrawPile();
+        }
+
+        // Check to see if the current player has won
+        if (CURRENT_PLAYER.hand.Count == 0)
+        {
+            // The current player has won!
+            if (CURRENT_PLAYER.type == PlayerType.human)
+            {
+                GTGameOver.GetComponent<GUIText>().text = "You Won!";
+                GTRoundResult.GetComponent<GUIText>().text = "";
+            }
+            else
+            {
+                GTGameOver.GetComponent<GUIText>().text = "Game Over";
+                GTRoundResult.GetComponent<GUIText>().text = "Player " + CURRENT_PLAYER.playerNum + " won";
+            }
+            GTGameOver.SetActive(true);
+            GTRoundResult.SetActive(true);
+            phase = TurnPhase.gameOver;
+            Invoke("RestartGame", 1);
+            return (true);
+        }
+
+        return (false);
+    }
+
+    public void RestartGame()
+    {
+        CURRENT_PLAYER = null;
+        Application.LoadLevel("__Bartok_Scene_0");
+    }
+
 }
+
 
